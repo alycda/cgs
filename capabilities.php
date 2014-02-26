@@ -131,7 +131,7 @@ include 'inc/_header.php'; ?>
 
 
 
-
+<a class="btn btn-warning pull-right" href="pdf/capabilities-2014-2-4.pdf" target="_blank" title="download">download</a>
 
 
 
