@@ -271,8 +271,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 <!-- add 'back to top' link -->
 
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="_/js/jquery-1.9.1.js"></script>
+    <!-- Twitter Bootstrap -->
+    <script src="_/vendor/twitter-bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
 $('body').scrollspy({ target: '#navbar' })
 

@@ -542,9 +542,9 @@ include 'inc/_header.php'; ?>
 
 </section>
 
-<script src="js/jquery-1.9.1.js"></script>
+<script src="_/js/jquery-1.9.1.js"></script>
 
     <!-- Twitter Bootstrap -->
-    <script src="lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="_/vendor/twitter-bootstrap/js/bootstrap.js"></script>
 
 <?php include 'inc/_footer.php'; ?>

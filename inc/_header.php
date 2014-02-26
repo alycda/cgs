@@ -13,7 +13,7 @@
 
 	<link href="_/css/screen.css" rel="stylesheet" media="all">
 
-	<script src="js/modernizr.min.js"></script>
+	<script src="_/js/modernizr.min.js"></script>
 </head>
 <body id="<?= !empty($pageTitle)?clean_url($pageTitle):'' ?>">
 <div class="container">
