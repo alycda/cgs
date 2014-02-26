@@ -1,0 +1,471 @@
+
+/* Normalization
+*********************************************************************************************/
+
+#dp-admin div,
+#dp-admin span,
+#dp-admin object,
+#dp-admin iframe,
+#dp-admin h1,
+#dp-admin h2,
+#dp-admin h3,
+#dp-admin p,
+#dp-admin a,
+#dp-admin em,
+#dp-admin img,
+#dp-admin strong,
+#dp-admin ol,
+#dp-admin ul,
+#dp-admin li,
+#dp-admin fieldset,
+#dp-admin form,
+#dp-admin label,
+#dp-admin section,
+#dp-admin video,
+body.install {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+#dp-admin a {
+    text-decoration: none;
+}
+
+#dp-admin ol,
+#dp-admin ul { 
+    list-style: none;
+}
+
+/* The Install Screen
+*********************************************************************************************/
+
+body.install {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #808080;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+}
+
+a.dropplets {
+    background-color: #1096d7;
+    border-radius: 10px;
+    font-family: "dropplets";
+    font-size: 120px;
+    line-height: 160px;
+    color: #ffffff;
+    text-align: center;
+    width: 160px;
+    height: 160px;
+    float: left;
+    margin: -80px 0 0 80px;
+    text-decoration: none;
+}
+
+body.install form {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.01);
+    width: 320px;
+    height: 340px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -171px 0 0 -161px;
+}
+
+body.install form h2 {
+    font-size: 20px;
+    color: #404040;
+    font-weight: normal;
+    width: 320px;
+    float: left;
+    margin: 24px 0 10px;
+}
+
+body.install form p {
+    width: 300px;
+    float: left;
+    margin: 0 0 24px;
+    padding: 0 10px;
+}
+
+body.install form input[type="password"] {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    outline: none;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #404040;
+    text-align: center;
+    width: 258px;
+    float: left;
+    margin: 0 0 10px 10px;
+    padding: 10px 20px;
+    
+}
+
+body.install form button {
+    background-color: #4ebb44;
+    border: none;
+    border-radius: 4px;
+    font-family: "dropplets";
+    color: #ffffff;
+    font-size: 40px;
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    bottom: -35px;
+    left: 160px;
+    margin-left: -35px;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+body.install form button:hover {
+    opacity: 0.8;
+}
+
+/* Typography
+*********************************************************************************************/
+
+@font-face {
+	font-family: 'dropplets';
+	src:url('fonts/dropplets.eot');
+	src:url('fonts/dropplets.eot?#iefix') format('embedded-opentype'),
+		url('fonts/dropplets.woff') format('woff'),
+		url('fonts/dropplets.ttf') format('truetype'),
+		url('fonts/dropplets.svg#dropplets') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Toolbar
+*********************************************************************************************/
+
+#dp-admin #dp-tools {
+    font: 16px/16px "dropplets";
+    text-align: center;
+    position: fixed;
+    width: 35px;
+    top: 10px !important;
+    left: 10px !important;
+    margin: 0;
+    z-index: 2000;
+}
+
+#dp-admin #dp-tools li {
+    list-style: none;
+}
+
+#dp-admin #dp-tools li span {
+    background-color: #f44200;
+    position: absolute;
+    z-index: 950;
+    color: #ffffff;
+    font-size: 11px;
+    line-height: 1;
+    width: 18px;
+    height: 15px;
+    text-align: center;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin: 0 0 0 1px;
+    padding: 3px 0 0 0;
+    box-shadow: inset 2px 0 0 0 rgba(0, 0, 0, 0.15);
+}
+
+#dp-admin #dp-tools li span.error {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    width: 260px;
+    height: 32px;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 12px;
+    line-height: 32px;
+}
+
+#dp-admin #dp-tools li,
+#dp-admin #dp-tools li a,
+#dp-admin #dp-tools li label {
+    width: 35px;
+    float: left;
+}
+
+#dp-admin #dp-tools li span.error a {
+    width: auto;
+    float: none;
+    background: none;
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+#dp-admin #dp-tools li a,
+#dp-admin #dp-tools li label {
+    background-color: #f0f2f4;
+    margin-bottom: 1px;
+    color: #89949b;
+    padding: 8px 0;
+    
+}
+
+#dp-admin #dp-tools li label {
+    cursor: pointer;
+}
+
+#dp-admin #dp-tools li a:hover,
+#dp-admin #dp-tools li a.selected,
+#dp-admin #dp-tools li label:hover {
+    color: #1096d7;
+}
+
+#dp-admin #dp-tools li:last-child a {
+    margin: 0;
+}
+
+/* Uploader
+*********************************************************************************************/
+
+#dp-uploaded .success {
+    font: 60px/100px "dropplets";
+    background-color: #4ebb44;
+    color: #ffffff;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+/* Cards
+*********************************************************************************************/
+
+#dp-admin .dp-card {
+    background-color: #f0f2f4;
+    position: fixed;
+    top: 10px;
+    left: -800px;
+    z-index: 1000;
+}
+
+#dp-admin .dp-card.shown {
+    left: 46px;
+}
+
+#dp-admin .dp-card.small {
+    width: 300px;
+    height: 32px;
+}
+
+#dp-admin .dp-card.post {
+    width: 300px;
+    height: 300px;
+}
+
+#dp-admin .dp-card.medium {
+    width: 400px;
+    height: 600px;
+}
+
+#dp-admin .dp-card.large {
+    width: 700px;
+    height: 700px;
+    overflow: scroll;
+}
+
+/* Form Styles
+*********************************************************************************************/
+
+#dp-admin .dp-card.small form {
+    width: 300px;
+    height: 32px;
+    float: left;
+}
+
+#dp-admin .dp-card.medium form {
+    width: 400px;
+    height: 600px;
+    float: left;
+    overflow-x: scroll;
+}
+
+body.install #dp-admin .dp-card.medium form {
+    overflow: hidden;
+}
+
+#dp-admin .dp-card.large form {
+    width: 175px;
+    height: 175px;
+    float: left;
+    position: relative;
+    
+}
+
+#dp-admin .dp-card .input {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+#dp-admin .dp-card .hidden {
+    display: none;
+}
+
+#dp-admin .dp-card label {
+    background-color: #e4e8ea;
+    text-transform: uppercase;
+    color: #89949b;
+    width: 360px;
+    float: left;
+    padding: 6px 20px 6px;
+    font: 12px/12px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    /*box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.25);*/
+}
+
+#dp-admin .dp-card.large label {
+    width: 660px;
+}
+
+#dp-admin .dp-card input[type="text"],
+#dp-admin .dp-card input[type="password"],
+#dp-admin .dp-card input[type="email"],
+#dp-admin .dp-card textarea {
+    background-color: #f0f2f4;
+    border: none;
+    outline: none;
+    color: #929da3;
+    width: 360px;
+    float: left;
+    margin: 0;
+    padding: 15px 20px;
+    font: 14px/22px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+#dp-admin .dp-card.small input[type="password"] {
+    width: 280px;
+    font-size: 12px;
+    line-height: 12px;
+    padding: 9px 10px 8px;
+}
+
+#dp-admin .dp-card textarea {
+    height: 200px;
+    resize: none;
+}
+
+#dp-admin .dp-card textarea.code {
+    font-family: "Courier New", Courier, mono;
+}
+
+body.install #dp-admin .dp-card textarea {
+    height: 165px;
+}
+
+#dp-admin .dp-card input[type="text"]:focus,
+#dp-admin .dp-card input[type="password"]:focus,
+#dp-admin .dp-card input[type="email"]:focus,
+#dp-admin .dp-card textarea:focus {
+    background-color: #f5f7f8;
+    color: #333b3f;
+}
+
+#dp-admin .dp-card input[type="submit"],
+#dp-admin .dp-card button,
+#dp-admin .dp-card a {
+    background-color: #4ebb44;
+    border: none;
+    font-family: "dropplets";
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+#dp-admin .dp-card button.active {
+    background-color: #1096d7;
+}
+
+#dp-admin .dp-card input[type="submit"]:hover,
+#dp-admin .dp-card button:hover,
+#dp-admin .dp-card a:hover {
+    opacity: 0.8;
+}
+
+#dp-admin .dp-card.large input[type="submit"],
+#dp-admin .dp-card.large button,
+#dp-admin .dp-card.large a,
+#dp-admin .dp-card.small input[type="submit"],
+#dp-admin .dp-card.small button,
+#dp-admin .dp-card.small a {
+    font-size: 16px;
+    line-height: 29px;
+    width: 32px;
+    height: 32px;
+    top: 0;
+    right: 0;
+}
+
+#dp-admin .dp-card.small a {
+    background-color: #1096d7;
+    font-size: 18px;
+    line-height: 32px;
+    right: -33px;
+}
+
+#dp-admin .dp-card.large input[type="submit"],
+#dp-admin .dp-card.large button,
+#dp-admin .dp-card.large a {
+    top: 138px;
+    right: 5px;
+}
+
+/* Templates
+*********************************************************************************************/
+
+#dp-admin .dp-card.large a.buy {
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 14px;
+    right: 38px;
+}
+
+#dp-admin .dp-card.large a.preview {
+    background-color: #1096d7;
+    line-height: 32px;
+}
+
+#dp-admin .dp-card.large li {
+    list-style: none;
+    width: 175px;
+    height: 175px;
+    float: left;
+    position: relative;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+#dp-admin .dp-card.large li img {
+    width: 175px;
+    height: 175px;
+    float: left;
+    opacity: 0.8;
+}
