@@ -11,7 +11,7 @@
 
 	<base href="/">
 
-	<link href="css/style.css" rel="stylesheet" media="all">
+	<link href="_/css/screen.css" rel="stylesheet" media="all">
 
 	<script src="js/modernizr.min.js"></script>
 </head>
