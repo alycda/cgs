@@ -1,0 +1,21 @@
+/* TEAM */
+
+Web Developer: Alyssa Davis.
+Site: alyda.me
+Twitter: alyda21
+Location: Los Angeles, CA
+
+/* MADE WITH */
+
+[barebones](http://barebones.paulrobertlloyd.com/)
+[bootstrap 3 sass](https://github.com/twbs/bootstrap-sass)
+[compass](http://compass-style.org/)
+[dropplets](https://github.com/circa75/dropplets)
+[AngularJS](https://github.com/angular/angular.js)
+
+/* SITE */
+
+Last update: 2014/02/26
+Standards: HTML5, CSS3
+Components: Modernizr, jQuery, Bootstrap
+Software: Git, Sublime
