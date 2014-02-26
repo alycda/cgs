@@ -153,6 +153,7 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 			$headers .= "Reply-To: " . $_POST['email'] . "\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+			$headers .= "Bcc: brian@compressedgassystems.com, brian@cgs.aero, jennifer@cgs.aero, web@cgs.aero\r\n";
 
 		  if (mail($to, $subject, $email, $headers)) {
 		    $message = '<div class="alert alert-success">Your message has been sent. </div>'; //<button class="btn btn-default btn-xs pull-right">clear fields</button>
