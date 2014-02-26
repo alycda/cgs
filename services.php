@@ -55,6 +55,10 @@ include 'inc/_header.php'; ?>
 	<p>We are cylinder safety experts, trusted by aircraft customers all over the world. CGS upholds the most stringent standards demanded by the FAA&mdash;you can trust that your cylinders are in capable hands.</p>
 	<p>All testing is done in-house. Save money and time by bringing your cylinders to the source. Turn time is  normally 1 business day.</p>
 	<p>We offer quantity discounts starting at just three cylinders. Commercial accounts should call for competitive, negotiable rates.</p>
+
+	<p>Feel free to stop by during normal business hours (8am-5pm PST, Monday - Friday). Or, you can send your cylinders in for service from anywhere. We ship worldwide!</p>
+
+	<p>Use this <a href="pdf/cylinder-hydro-test-submission-form.pdf" target="_blank" title="form">form</a> and include with your cylinder when sending it in. We will contact you upon receipt. No payment will be due until your cylinder is complete and the transaction can be easily completed online or over the phone.</p>
 	<div class="row">
 
 		<article class="col-xs-6">
@@ -86,7 +90,7 @@ include 'inc/_header.php'; ?>
 		<article class="col-xs-6">
 			<h2><a name="industrial">Industrial</a></h2>
 			<img src="images/cylinder.jpg" alt="Industrial" class="pull-right">
-			<p class="small">CGS has the capability to hydrostatically test almost any cylinder up to 40 inches long and 24 inches wide, with test pressures up to 10,000 PSI.<br/><br/>We can test fire extinguisher cells and cylinders, industrial and specialty gas cylinders, and even non-DOT containers for a variety of applications.<br/><br/>Feel free to stop by during normal business hours (8am-5pm PST, Monday - Friday). Or, you can send your cylinders in for service from anywhere. We ship worldwide!<br/><br/>Use the form below and include with your cylinder when sending it in. We will contact you upon receipt. No payment will be due until your cylinder is complete and the transaction can be easily completed online or over the phone.</p>
+			<p class="small">CGS has the capability to hydrostatically test almost any cylinder up to 40 inches long and 24 inches wide, with test pressures up to 10,000 PSI.<br/><br/>We can test fire extinguisher cells and cylinders, industrial and specialty gas cylinders, and even non-DOT containers for a variety of applications.<br/><br/>Feel free to stop by during normal business hours (8am-5pm PST, Monday - Friday). Or, you can send your cylinders in for service from anywhere. We ship worldwide!<br/><br/>Use this <a href="pdf/cylinder-hydro-test-submission-form.pdf" target="_blank" title="form">form</a> and include with your cylinder when sending it in. We will contact you upon receipt. No payment will be due until your cylinder is complete and the transaction can be easily completed online or over the phone.</p>
 		</article>
 
 	</div>
