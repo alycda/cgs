@@ -85,7 +85,7 @@ function generateFormToken($form) {
 if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 
 	// Building a whitelist array with keys which will send through the form, no others would be accepted later on
-  $whitelist = array('token', 'company', 'contact', 'email', 'message' );
+  $whitelist = array('token', 'company', 'contact', 'email', 'message', 'recaptcha_challenge_field', 'recaptcha_response_field' );
 
   // Building an array with the $_POST-superglobal
   foreach ($_POST as $key=>$item) {
@@ -95,52 +95,82 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 
 			writeLog('Unknown form fields: '.$key);
 			die("Hack-Attempt detected. Please use only the fields in the form");
-
+			// $message = "Hack-Attempt detected. Please use only the fields in the form";
 		}
   }
 
-  // PREPARE THE BODY OF THE MESSAGE
+  // CAPTCHA
 
-	$message = '<html><body><table style="width:480; margin: 0 auto;"><tr><td>';
+  // http://stackoverflow.com/a/6609181
+  $url = 'http://www.google.com/recaptcha/api/verify';
+  $data = array('privatekey' => '6LfvNe8SAAAAAJEU-DdJ8lmFb1L3VMG4J-YUdF6q', 'remoteip' => getRealIp(), 'challenge' => $_POST['recaptcha_challenge_field'], 'response' => $_POST['recaptcha_response_field']);
 
-	$message .='<table rules="all" style="border-color: #666;" cellpadding="10" width="480">';
-	$message .='  <tr style="background: #eee;"> <td width="150"><strong>Company Name:</strong> </td> <td width="330"><strong>' . strip_tags($_POST['company']) . '</strong></td> </tr>';
-	$message .='  <tr> <td><strong>Contact Name</strong></td> <td>' . strip_tags($_POST['contact']) . '</td> </tr>';
-	$message .='  <tr> <td><strong>e-mail</strong></td> <td>' . strip_tags($_POST['email']) . '</td> </tr>';
-	$message .='    <tr> <td valign="top"><strong>Notes / Other Requirements:</strong></td><td>' . strip_tags($_POST['message']) . '</td>';
-	$message .='  </tr> </table>';
-	$message .='<br/><br/>';
-	$message .='<table rules="all" style="border-color: #666;" cellpadding="10" width="480">';
-	$message .='  <tr style="background: #eee;"> <td width="150" colspan="2"><strong>Debug:</strong> </td> </tr>';
-	$message .='  <tr> <td width="150"><strong>IP:</strong> </td> <td width="330">' . getRealIp() . '</td> </tr>';
-	$message .='  <tr> <td><strong>Browser / OS:</strong><br/>(appears to be) </td> <td>' . $_SERVER['HTTP_USER_AGENT'] . '</td> </tr>';
-	$message .='</table>';
+  // use key 'http' even if you send the request to https://...
+	$options = array(
+	    'http' => array(
+	        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+	        'method'  => 'POST',
+	        'content' => http_build_query($data),
+	    ),
+	);
+	$context  = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
 
-	$message .= "</td></tr></table></body></html>";
+	// var_dump($result);
 
-	//  MAKE SURE THE "FROM" EMAIL ADDRESS DOESN'T HAVE ANY NASTY STUFF IN IT
-	$pattern = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i";
-	if (preg_match($pattern, trim(strip_tags($_POST['email'])))) {
-		$cleanedFrom = trim(strip_tags($_POST['email']));
+	if( explode("\n", $result)[0] == "true" ) {
+		// die("send".$result);
+		// VALID CAPTCHA RESPONSE
 
-		$to = 'alyda@me.com';
-		$subject = 'Request a Quote';
-		$headers = "From: " . $_POST['contact'] . " < " . $_POST['email'] . " >\r\n";
-		$headers .= "Reply-To: " . $_POST['email'] . "\r\n";
-		$headers .= "MIME-Version: 1.0\r\n";
-		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-	  if (mail($to, $subject, $message, $headers)) {
-	    $message = '<div class="alert alert-success">Your message has been sent. </div>'; //<button class="btn btn-default btn-xs pull-right">clear fields</button>
-	  } else {
-	    $message = '<div class="alert alert-danger">There was a problem sending the email.</div>';
-	    //die();
-	  }
+	  // PREPARE THE BODY OF THE MESSAGE
 
-	} else {
-		$message =  '<div class="alert alert-danger">The email address you entered (' . $_POST["email"] . ') is invalid. Please try again!</div>';
-		//die();
+		$email = '<html><body><table style="width:480; margin: 0 auto;"><tr><td>';
+
+		$email .='<table rules="all" style="border-color: #666;" cellpadding="10" width="480">';
+		$email .='  <tr style="background: #eee;"> <td width="150"><strong>Company Name:</strong> </td> <td width="330"><strong>' . strip_tags($_POST['company']) . '</strong></td> </tr>';
+		$email .='  <tr> <td><strong>Contact Name</strong></td> <td>' . strip_tags($_POST['contact']) . '</td> </tr>';
+		$email .='  <tr> <td><strong>e-mail</strong></td> <td>' . strip_tags($_POST['email']) . '</td> </tr>';
+		$email .='    <tr> <td valign="top"><strong>Notes / Other Requirements:</strong></td><td>' . strip_tags($_POST['message']) . '</td>';
+		$email .='  </tr> </table>';
+		$email .='<br/><br/>';
+		$email .='<table rules="all" style="border-color: #666;" cellpadding="10" width="480">';
+		$email .='  <tr style="background: #eee;"> <td width="150" colspan="2"><strong>Debug:</strong> </td> </tr>';
+		$email .='  <tr> <td width="150"><strong>IP:</strong> </td> <td width="330">' . getRealIp() . '</td> </tr>';
+		$email .='  <tr> <td><strong>Browser / OS:</strong><br/>(appears to be) </td> <td>' . $_SERVER['HTTP_USER_AGENT'] . '</td> </tr>';
+		$email .='</table>';
+
+		$email .= "</td></tr></table></body></html>";
+
+		//  MAKE SURE THE "FROM" EMAIL ADDRESS DOESN'T HAVE ANY NASTY STUFF IN IT
+		$pattern = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i";
+		if (preg_match($pattern, trim(strip_tags($_POST['email'])))) {
+			$cleanedFrom = trim(strip_tags($_POST['email']));
+
+			$to = 'alyda@me.com';
+			$subject = 'CGS Contact Form';
+			$headers = "From: " . $_POST['contact'] . " < " . $_POST['email'] . " >\r\n";
+			$headers .= "Reply-To: " . $_POST['email'] . "\r\n";
+			$headers .= "MIME-Version: 1.0\r\n";
+			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+		  if (mail($to, $subject, $email, $headers)) {
+		    $message = '<div class="alert alert-success">Your message has been sent. </div>'; //<button class="btn btn-default btn-xs pull-right">clear fields</button>
+		  } else {
+		    $message = '<div class="alert alert-danger">There was a problem sending the email. Please click here: <a href="mailto:info@cgs.aero?subject=CGS Contact Form&body='.strip_tags($_POST['message']).'">info@cgs.aero</a>.</div>';
+		    //die();
+		  }
+
+		} else {
+			$message =  '<div class="alert alert-danger">The email address you entered (' . $_POST["email"] . ') is invalid. Please try again!</div>';
+			//die();
+		}
+
+	} else { // FAILED CAPTCHA
+		$message = '<div class="alert alert-danger">Please try the CAPTCHA again: '.$result.'</div>';
+		// die($result);
 	}
+
 
 
 } else {
@@ -206,7 +236,7 @@ include 'inc/_header.php'; ?>
         <p style="border-right: 1px solid #ccc;
 height: 150px; width:300px;">	Phone: (855) 875-2226<br/>
 Fax: (888) 694-7240<br/>
-e-mail: <a href="mailto:brian@cgs.aero">brian@cgs.aero</a></p>
+e-mail: <a href="mailto:info@cgs.aero">info@cgs.aero</a></p>
       </div>
       <div class="col-6 col-lg-4">
         <h2>Find <span style="color:#428bca">CGS</span></h2>
@@ -219,7 +249,7 @@ Monday - Friday<br/>
      	</div>
 			<div class="col-lg-4">
 <h2>A.O.G. Contact Info</h2>
-<p>e-mail: <a href="mailto:brian@cgs.aero">brian@cgs.aero</a>   <br/>
+<p>e-mail: <a href="mailto:info@cgs.aero">info@cgs.aero</a>   <br/>
 Dial <strong>855-875-2226</strong>x1 after hours to be connected with a representative.
 <br/><br/><br/>
 24/7 A.O.G. Service <strong>ANYTIME</strong>
@@ -245,6 +275,19 @@ Dial <strong>855-875-2226</strong>x1 after hours to be connected with a represen
 				    <input type="email" class="form-control" name="email" placeholder="Enter email" value="<?=!empty($_POST['email'])?$_POST['email']:'';?>" required>
 				  </div>
 					<textarea class="form-control" name="message" rows="3" required><?=!empty($_POST['message'])?$_POST['message']:'Questions / Comments';?></textarea>
+<br>
+<script type="text/javascript"
+     src="http://www.google.com/recaptcha/api/challenge?k=6LfvNe8SAAAAANy9BI4cLfskFqrv37ww9atPsrY8">
+  </script>
+  <noscript>
+     <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfvNe8SAAAAANy9BI4cLfskFqrv37ww9atPsrY8"
+         height="300" width="500" frameborder="0"></iframe><br>
+     <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+     </textarea>
+     <input type="hidden" name="recaptcha_response_field"
+         value="manual_challenge">
+  </noscript>
+
 <br>
 				  <button type="submit" class="btn btn-default">Submit</button>
 				</form>
