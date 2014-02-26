@@ -1,11 +1,11 @@
 $white: 		#ececec;
-$ltgray: 		#c5c4c3;
-$dkgray: 		#a9b1b0;
+$ltgray: 		#e6e6e6; //#c5c4c3;
+$dkgray: 		#777; //#a9b1b0;
 
 $hiblue: 		#00aeef;
 $ltblue: 		#0066a8;
 $blue: 			#0c4c83;
-$dkblue: 		#162a51;//#0066a8;
+$dkblue: 		#162a51; //#0066a8;
 $orange: 		#f5841f;
 
 $primary: 	$ltblue;
@@ -13,3 +13,9 @@ $secondary: $dkgray;
 $tertiary: 	$dkblue;
 $accent: 		$orange;
 $accent2: 	$hiblue;
+
+$body-bg: $ltgray; //#e6e6e6;
+$text-color: $dkgray;
+
+// $link-color: $hiblue;
+// $link-hover-color:

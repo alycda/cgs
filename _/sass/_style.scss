@@ -1,0 +1,211 @@
+body {
+	background:$body-bg url('img/bg_halftone.png') no-repeat center top;
+	color: $text-color;
+}
+
+header, footer {
+	padding: 3% 0 1%;
+}
+
+header {
+	.logo {
+		display: block;
+		img { width: 100%; }
+	}
+
+	address {
+		font-weight: bold;
+		font-size: 18px;
+		margin-bottom: 1em;
+	}
+
+	.navbar {
+		margin-bottom:0;
+		border: none;
+
+		// http://examples.getbootstrap.com/justified-nav/justified-nav.css
+		#main-nav {
+		  border-top-left-radius: 5px;
+		  border-top-right-radius: 5px;
+		  border: 1px solid #ccc;
+		  border-bottom: none;
+
+		  li a {
+			  font-weight: bold;
+			  border-left: 1px solid rgba(255,255,255,.75);
+			  border-right: 1px solid rgba(0,0,0,.1);
+			  background-color: $white;
+			  color: $dkgray;
+			}
+
+			.active > a, a:hover {
+			  background-color: #f9f9f9; //use lighten, dummy
+			  background-image: none;
+			  color: $blue;
+			}
+
+			li:first-child > a {
+			  border-left: 0;
+			  border-top-left-radius: 5px;
+			}
+
+			li:last-child > a {
+			  border-right: 0;
+			  border-top-right-radius: 5px;
+			}
+		}
+		#secondary-nav {
+			background: $white;
+			border-bottom-left-radius: 5px;
+		  border-bottom-right-radius: 5px;
+		  border: 1px solid #ccc;
+		  box-shadow: inset 0 3px 6px 0 rgba(0,0,0,.15);
+
+			li a {
+				color: $dkgray;
+			}
+
+		  .active > a, a:hover {
+			  color: $blue;
+			  box-shadow: inset 0 3px 6px 0 rgba(0,0,0,.15);
+			  background-color: #f9f9f9;
+			}
+		}
+	}
+}
+
+/* Reset the container */
+.container {
+  max-width: none !important;
+  width: 1170px;
+}
+
+.jumbotron {
+	background:#fff;
+	margin-top: 1em;
+	header {
+		padding-top: 0;
+		padding-bottom: 20px;
+		h1 {
+			font-size: 48px;
+			text-align: center;
+		}
+		.jumbo {
+			display: block;
+			font-size: 42px; //60px
+			line-height: 1.5em;
+			font-weight: bold;
+			color: $primary;// $ltblue;
+			em {
+				color: $ltgray;
+			}
+		}
+		em.h4 {
+			display: block;
+		}
+	}
+	a img:hover {
+		opacity: 0.80;
+	  filter: alpha(opacity=80);
+	}
+	p.small {
+		font-size: 16px;
+
+		+ .more {
+			font-weight: bold;
+		}
+	}
+}
+
+.content {
+	padding-bottom: 18px;
+	border-bottom: 3px solid;
+}
+
+#newsletter {
+	background: $blue;
+	border: 1px solid $primary;// $ltblue;
+	border-radius: 4px;
+	color: $white;
+	.btn {
+		color: $gray;
+		font-weight: bold;
+	}
+}
+
+
+#services {
+	h1 {
+		// font-size: 63px;
+		font-weight:bold;
+		color: $primary;// $ltblue;
+	}
+	h2 {
+		font-weight: bold;
+		a {
+			color: rgb(119, 119, 119);
+			&:hover {
+				color: rgb(119, 119, 119);
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+#request-a-quote {
+	input[name="state"] {
+		width:60px;
+	} input[name="zip"] {
+		width:68px;
+	} input[name="country"] {
+		width:90px;
+	}
+}
+
+
+// @import "responsive";
+
+// Blog
+.three-quarters.post {
+	h1 {
+		color: #0066a8;
+	} h2 {
+		color:#428bca;
+	} p {
+		font-size:18px; padding-bottom:12px;
+	}
+}
+
+
+// Capabilities
+
+
+// Utils
+
+img.centered {
+	display: block;
+	margin-left: auto;
+  margin-right: auto;
+}
+
+// .light-gray {
+// 	color: $ltgray;
+// } .gray {
+
+// } .dark-gray {
+
+// }
+
+// .blue {
+// 	color:$blue;
+// }
+
+// .shadow {
+// 	text-shadow: 1px 1px 0 #fff;
+// }
+
+
+// // Temp
+// .r {
+// 	border: 1px solid red;
+// }
