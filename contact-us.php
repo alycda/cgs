@@ -101,8 +101,8 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
   // CAPTCHA
 
   // http://stackoverflow.com/a/6609181
-  // $url = 'http://www.google.com/recaptcha/api/verify';
-  // $data = array('privatekey' => '6LfvNe8SAAAAAJEU-DdJ8lmFb1L3VMG4J-YUdF6q', 'remoteip' => getRealIp(), 'challenge' => $_POST['recaptcha_challenge_field'], 'response' => $_POST['recaptcha_response_field']);
+  $url = 'http://www.google.com/recaptcha/api/verify';
+  $data = array('privatekey' => '6LfvNe8SAAAAAJEU-DdJ8lmFb1L3VMG4J-YUdF6q', 'remoteip' => getRealIp(), 'challenge' => $_POST['recaptcha_challenge_field'], 'response' => $_POST['recaptcha_response_field']);
 
   // use key 'http' even if you send the request to https://...
 	// $options = array(
