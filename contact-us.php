@@ -112,8 +112,8 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 	        'content' => http_build_query($data),
 	    ),
 	);
-	// $context  = stream_context_create($options);
-	// $result = file_get_contents($url, false, $context);
+	$context  = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
 
 	// var_dump($result);
 
