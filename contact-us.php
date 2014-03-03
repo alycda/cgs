@@ -117,7 +117,9 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 
 	var_dump($result);
 
-	// if( explode("\n", $result)[0] == "true" ) {
+	$someVar = explode("\n", $result);
+
+	if( $someVar[0] == "true" ) {
 		// die("send".$result);
 		// VALID CAPTCHA RESPONSE
 
@@ -166,10 +168,10 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 			//die();
 		}
 
-	// } else { // FAILED CAPTCHA
+	} else { // FAILED CAPTCHA
 		// $message = '<div class="alert alert-danger">Please try the CAPTCHA again: '.$result.'</div>';
 		// die($result);
-	// }
+	}
 
 
 
