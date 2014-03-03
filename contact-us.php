@@ -115,7 +115,7 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 	$context  = stream_context_create($options);
 	$result = file_get_contents($url, false, $context);
 
-	var_dump($result);
+	// var_dump($result);
 
 	$someVar = explode("\n", $result);
 
@@ -169,7 +169,7 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 		}
 
 	} else { // FAILED CAPTCHA
-		// $message = '<div class="alert alert-danger">Please try the CAPTCHA again: '.$result.'</div>';
+		$message = '<div class="alert alert-danger">Please try the CAPTCHA again: '.$result.'</div>';
 		// die($result);
 	}
 
