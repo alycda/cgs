@@ -115,7 +115,7 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 	$context  = stream_context_create($options);
 	$result = file_get_contents($url, false, $context);
 
-	// var_dump($result);
+	var_dump($result);
 
 	// if( explode("\n", $result)[0] == "true" ) {
 		// die("send".$result);
