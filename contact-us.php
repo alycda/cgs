@@ -105,13 +105,13 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
   $data = array('privatekey' => '6LfvNe8SAAAAAJEU-DdJ8lmFb1L3VMG4J-YUdF6q', 'remoteip' => getRealIp(), 'challenge' => $_POST['recaptcha_challenge_field'], 'response' => $_POST['recaptcha_response_field']);
 
   // use key 'http' even if you send the request to https://...
-	// $options = array(
-	//     'http' => array(
-	//         'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-	//         'method'  => 'POST',
-	//         'content' => http_build_query($data),
-	//     ),
-	// );
+	$options = array(
+	    'http' => array(
+	        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+	        'method'  => 'POST',
+	        'content' => http_build_query($data),
+	    ),
+	);
 	// $context  = stream_context_create($options);
 	// $result = file_get_contents($url, false, $context);
 
