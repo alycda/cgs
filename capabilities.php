@@ -405,4 +405,4 @@ function findString (str) {
 
 </script>
 
-<?php include '_footer.php'; ?>
+<?php include 'inc/_footer.php'; ?>
