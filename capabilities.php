@@ -170,49 +170,98 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 <?php
 
-$json = file_get_contents('http://cgs/data/json.php');
-// $json = file_get_contents('http://cgs.aero/data/capabilities.json');
+// $json = file_get_contents('http://cgs/data/json.php');
+$json = file_get_contents('http://cgs.aero/data/capabilities.json');
 
-$j = json_decode($json, true);
 
-foreach ($j as $h2 => $nomenclature) {
+$jsonIterator = new RecursiveIteratorIterator(
+    new RecursiveArrayIterator(json_decode($json, TRUE)),
+    RecursiveIteratorIterator::SELF_FIRST);
 
-	echo "<h2 hidden>".$h2."</h2>";
+$lastval = '';
+$section = '';
+$row = 0;
 
-	foreach($nomenclature as $h3 => $manufacturers) { ?>
+foreach ($jsonIterator as $key => $val) {
 
-	<ul class="nav nav-tabs">
-		<li class="active" style="padding:0"><a href="#"><h3 id="<?= clean_url($h3); ?>" class="text-primary" style="margin: 0;"><?= $h3 ?></h3></a></li>
-	</ul>
+if($row != 0) {
 
-	<div style="background:#fff; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd;border-top-right-radius: 6px;">
+	if(is_array($val)) {
 
-<?php
-		foreach ($manufacturers as $mfg => $parts) {
-			echo '<dl class="clearfix">';
-			echo '<dt class="h4 text-muted text-right">'.$mfg.'</dt>';
-			echo '<span>';
-			foreach ($parts as $key => $part) {
-				echo '<dd class="lead">'.$part.'</dd>';
-			}
-			echo '</span>';
-			echo "</dl>";
-		} ?>
+		if($lastval == "part"){
+			echo "</span></dl>";
+		}
 
-		<div style="background: rgb(255,255,255); /* Old browsers */
+		if(!empty($val[0])) {
+			echo "<dl class=\"clearfix\">";
+			echo "<dt class=\"h4 text-muted text-right\">".$key."</dt><span>";
+			$lastval = 'h4';
+		} else {
+
+			if($key == "Fire" || $key == "Oxygen" || $key == "Pneumatic" || $key == "Cylinder" ) {
+				if($lastval = "part"){
+					echo "</article>";
+				}
+				echo "<article>";
+				// echo "<div style=\"background:#fff; padding:16px;border:1px solid #ddd; border-radius:6px; \">";
+				echo "<h2 hidden>".$key."</h2>";
+			} else {
+				if($lastval == "part"){
+// echo ("<hr style='height:10px;display:block;background:#ff0'/>");
+
+
+echo("<div style=\"background: rgb(255,255,255); /* Old browsers */
 background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(230,230,230,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(40%,rgba(255,255,255,1)), color-stop(100%,rgba(230,230,230,1))); /* Chrome,Safari4+ */
 background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(230,230,230,1) 100%); /* Chrome10+,Safari5.1+ */
 background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(230,230,230,1) 100%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(230,230,230,1) 100%); /* IE10+ */
 background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(230,230,230,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */ height:64px;"></div>
-	</div><br/>
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */ height:64px;\"></div>"); //gradient
+echo("</div><br/>");	//close
 
-<?php
+					// echo "</div>";
+// 					echo "<div style=\"background: rgb(255,255,255); /* Old browsers */
+// background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(230,230,230,1) 100%); /* FF3.6+ */
+// background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(40%,rgba(255,255,255,1)), color-stop(100%,rgba(230,230,230,1))); /* Chrome,Safari4+ */
+// background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(230,230,230,1) 100%); /* Chrome10+,Safari5.1+ */
+// background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(230,230,230,1) 100%); /* Opera 11.10+ */
+// background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(230,230,230,1) 100%); /* IE10+ */
+// background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(230,230,230,1) 100%); /* W3C */
+// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */ height:64px;\"></div><br/>";
+				}
+
+				echo("  <ul class=\"nav nav-tabs\">
+  							<li class=\"active\" style=\"padding:0\"><a href=\"#\"><h3 id=\"".clean_url($key)."\" class=\"text-primary\" style=\"margin: 0;\">".$key."</h3></a></li>
+								</ul>");
+
+// echo("<hr style='height:10px;background:#f00;'");
+echo("<div style=\"background:#fff; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd;border-top-right-radius: 6px;\">");
+
+				$lastval = 'h3';
+			}
+
+		}
+
+	} else {
+		if($lastval != "part"){
+			// echo "<ul class=\"clearfix\">";
+		}
+			echo "<dd class=\"lead\">".$val."</dd>";
+			$lastval = 'part';
 	}
 
-} ?>
+}
+
+$row++;
+
+}
+
+echo("</div>");	//close
+
+?>
+
+			<!-- </article> -->
 
 
 
@@ -271,9 +320,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 <!-- add 'back to top' link -->
 
-<script src="_/js/jquery-1.9.1.js"></script>
-    <!-- Twitter Bootstrap -->
-    <script src="_/vendor/twitter-bootstrap/js/bootstrap.js"></script>
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $('body').scrollspy({ target: '#navbar' })
 
@@ -357,4 +405,4 @@ function findString (str) {
 
 </script>
 
-<?php include 'inc/_footer.php'; ?>
+<?php include '_footer.php'; ?>
