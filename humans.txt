@@ -15,7 +15,7 @@ Location: Los Angeles, CA
 
 /* SITE */
 
-Last update: 2014/02/26
+Last update: 2014/06/09
 Standards: HTML5, CSS3
 Components: Modernizr, jQuery, Bootstrap
-Software: Git, Sublime
+Software: Git, SublimeText

@@ -40,10 +40,10 @@ LOG;
 		fclose($handle);           // close the file
 
 	} else {  // if first method is not working, for example because of wrong file permissions, email the data
-		$to = 'alyda@me.com';
+		$to = 'web@cgs.aero';
 		$subject = 'HACK ATTEMPT';
-		$header = 'Bcc: brian@compressedgassystems.com, brian@cgs.aero, jennifer@cgs.aero, web@cgs.aero' . "\r\n";
-		$header .= 'From: web@alyda.me';
+		$header = 'Bcc: brian@compressedgassystems.com, brian@cgs.aero, jennifer@cgs.aero' . "\r\n";
+		$header .= 'From: web@cgs.aero';
 		if (mail($to, $subject, $logging, $header)) {
 			echo "Sent notice to admin.";
 		}
@@ -148,13 +148,13 @@ if (verifyFormToken('contact-form')) { //if(!empty($_POST)) {
 		if (preg_match($pattern, trim(strip_tags($_POST['email'])))) {
 			$cleanedFrom = trim(strip_tags($_POST['email']));
 
-			$to = 'alyda@me.com';
+			$to = 'web@cgs.aero';
 			$subject = 'CGS Contact Form';
 			$headers = "From: " . $_POST['contact'] . " < " . $_POST['email'] . " >\r\n";
 			$headers .= "Reply-To: " . $_POST['email'] . "\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-			$headers .= "Bcc: brian@compressedgassystems.com, brian@cgs.aero, jennifer@cgs.aero, web@cgs.aero\r\n";
+			$headers .= "Bcc: brian@compressedgassystems.com, brian@cgs.aero, jennifer@cgs.aero\r\n";
 
 		  if (mail($to, $subject, $email, $headers)) {
 		    $message = '<div class="alert alert-success">Your message has been sent. </div>'; //<button class="btn btn-default btn-xs pull-right">clear fields</button>
